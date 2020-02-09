@@ -12,10 +12,10 @@ const Header = () => (
 			</div>
 		</Link>
 		<div className='options'>
-			<Link className='options' to='/shop'>
+			<Link className='option' to='/shop'>
 				SHOP
 			</Link>
-			<Link className='options' to='/shop'>
+			<Link className='option' to='/shop'>
 				CONTACT
 			</Link>
 		</div>
