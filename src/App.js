@@ -5,25 +5,42 @@ import { Switch, Route } from 'react-router-dom';
 import ShopPage from './pages/ShopPage/ShopPage';
 import Header from './components/Header/Header';
 import Login from './pages/Login/Login';
-
-const HatsPage = () => (
-  <div>
-    <h1>HATS PAGE </h1>
-  </div>
-)
+import { auth} from './firebase/firebase.utils';
 
 
-function App() {
-	return (
-		<div>
-		<Header />
-			<Switch>
-				<Route exact path='/' component={HomePage} />
-				<Route exact path='/shop' component={ShopPage} />
-				<Route exact path='/signin' component={Login} />
-    		</Switch>
-		</div>
-  	);	
+class App extends React.Component {
+	constructor() {
+		super();
+
+		this.state = {
+			currentUser: null
+		}
+	}
+
+	unsubcribeFromAuth = null;
+
+	componentDidMount() {
+		auth.onAuthStateChanged(user => {
+			this.setState({currentUser: user});
+		});
+	}
+
+	componentWillUnmount() {
+		this.unsubcribeFromAuth();
+	}
+
+	render() {
+		return (
+			<div>
+			<Header currentUser={this.state.currentUser}/>
+				<Switch>
+					<Route exact path='/' component={HomePage} />
+					<Route exact path='/shop' component={ShopPage} />
+					<Route exact path='/signin' component={Login} />
+				</Switch>
+			</div>
+	  	);	
+	}
 }
 
 export default App;
