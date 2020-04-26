@@ -8,8 +8,9 @@ import  CartItem from '../CartItem/CartItem'
 import Button from '../Button/Button'
 
 import {selectCartItems} from '../../redux/cart/cart.selectors'
+import { toggleCartHidden } from '../../redux/cart/cart.actions'
 
-const CartDropDown = ({cartItems, history}) => (
+const CartDropDown = ({cartItems, history, dispatch}) => (
 	<div className='cart-dropdown'>
 		<div className='cart-items'>
 			{
@@ -22,7 +23,10 @@ const CartDropDown = ({cartItems, history}) => (
 				)
 			}
 		</div>
-		<Button onClick={() => history.push('/checkout')}>GO TO CHECKOUT</Button>
+		<Button onClick={() => {
+			history.push('/checkout')
+			dispatch(toggleCartHidden())
+		}}>GO TO CHECKOUT</Button>
 	</div>
 )
 
