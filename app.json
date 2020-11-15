@@ -13,7 +13,13 @@
 	"formation": {
 		"web": {
 			"quantity": 1,
-			"size": "hobby"
+			"size": "free"
 		}
-	}
+	},
+	"buildpacks": [
+		{
+			"url": "heroku/nodejs"
+		}
+	],
+	"stack": "container"
 }
