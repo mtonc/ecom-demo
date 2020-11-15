@@ -15,5 +15,8 @@
 			"quantity": 1,
 			"size": "free"
 		}
+	},
+	"scripts": {
+		"postdeploy": "yarn global add serve && serve -s build"
 	}
 }
