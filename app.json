@@ -20,6 +20,5 @@
 		{
 			"url": "heroku/nodejs"
 		}
-	],
-	"stack": "container"
+	]
 }
