@@ -1,0 +1,19 @@
+{
+	"name": "ecom-demo",
+	"description": "An e-commerce demo site made from Udemy class",
+	"keywords": [
+		"e-commerce",
+		"React",
+		"Udemy"
+	],
+	"website": "https://mtonc-ecom-demo.herokuapp.com",
+	"repository": "https://github.com/mtonc/ecom-demo",
+	"success_url": "/",
+	"image": "heroku/nodejs",
+	"formation": {
+		"web": {
+			"quantity": 1,
+			"size": "free"
+		}
+	}
+}
