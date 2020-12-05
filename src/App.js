@@ -13,7 +13,6 @@ import { connect } from 'react-redux'
 import { setCurrentUser } from './redux/user/user.actions'
 import { selectCurrentUser } from './redux/user/user.selectors'
 import { createStructuredSelector } from 'reselect' 
-
 class App extends React.Component {
 
 	unsubcribeFromAuth = null;
