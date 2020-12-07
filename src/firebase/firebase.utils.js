@@ -14,7 +14,10 @@ const config = {
 };
 
 export const createUserProfileDocument = async (userAuth, data) => {
-	if (!userAuth) return
+	if (!userAuth) {
+		console.log(userAuth)
+		return
+	}
 
 	console.log(userAuth);
 	
@@ -34,9 +37,10 @@ export const createUserProfileDocument = async (userAuth, data) => {
 				...data
 			})
 		} catch (err) {
-			console.log('error creating user', err.message)
+			throw new Error("Failed retrieving user document")
 		}
 	}
+
 	return userRef
 }
 
@@ -44,6 +48,15 @@ firebase.initializeApp(config);
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+
+export const getCurrentUser = () => {
+	return new Promise((resolve, reject) => {
+		const unsubscribe = auth.onAuthStateChanged(userAuth => {
+			unsubscribe();
+			resolve(userAuth)
+		}, reject)
+	})
+}
 
 export const addCollectionsAndDocuments = async (collectionKey, objectsToAdd) => {
 	const collectionRef = firestore.collection(collectionKey)
@@ -75,8 +88,7 @@ export const convertCollectionsSnaphotToMap = (collections) => {
 		return accumaltor
 	}, {})
 }
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({prompt: 'select_account'});
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({prompt: 'select_account'});
 
 export default firebase;
